@@ -32,28 +32,34 @@ resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/dow
 [Proxy Chain]
 
 [Proxy Group]
-Default Proxy = select,Auto,Express,HK,TW,JP,SG,US,Download,url = http://cp.cloudflare.com/generate_204
+Default Proxy = select,Auto,HK,TW,JP,SG,US,Low Cost,DIRECT,url = http://cp.cloudflare.com/generate_204
 AI + Research = select,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
 Developer = select,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
-Steam = select,DIRECT,Download,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
-Streaming = select,Express,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
+Steam = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
+Streaming = select,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
 Apple = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
 Microsoft = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
 AdBlock = select,REJECT,DIRECT
-Download = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
+Download = select,DIRECT,HK,TW,JP,SG,US,Low Cost,url = http://cp.cloudflare.com/generate_204
 Final = select,Default Proxy,DIRECT,url = http://cp.cloudflare.com/generate_204
 
 Auto = url-test,Auto_Filter,url = http://cp.cloudflare.com/generate_204,interval = 180,tolerance = 100
-Express = url-test,Express_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-HK = url-test,HK_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-TW = url-test,TW_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-JP = url-test,JP_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-SG = url-test,SG_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-US = url-test,US_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+Low Cost = select,Low Cost Auto,Low_Cost_Filter,url = http://cp.cloudflare.com/generate_204
+Low Cost Auto = url-test,Low_Cost_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+HK = select,HK Auto,HK_Filter,url = http://cp.cloudflare.com/generate_204
+HK Auto = url-test,HK_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+TW = select,TW Auto,TW_Filter,url = http://cp.cloudflare.com/generate_204
+TW Auto = url-test,TW_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+JP = select,JP Auto,JP_Filter,url = http://cp.cloudflare.com/generate_204
+JP Auto = url-test,JP_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+SG = select,SG Auto,SG_Filter,url = http://cp.cloudflare.com/generate_204
+SG Auto = url-test,SG_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+US = select,US Auto,US_Filter,url = http://cp.cloudflare.com/generate_204
+US Auto = url-test,US_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
 
 [Remote Filter]
-Auto_Filter = NameRegex, FilterKey = "(?i).+"
-Express_Filter = NameRegex, FilterKey = "(?i)(香港|hong\\s?kong|(?:^|[\\s\\-_|\\[\\]()])hk(?:$|[\\s\\-_|\\[\\]()])|台湾|台灣|taiwan|(?:^|[\\s\\-_|\\[\\]()])tw(?:$|[\\s\\-_|\\[\\]()])|日本|japan|(?:^|[\\s\\-_|\\[\\]()])jp(?:$|[\\s\\-_|\\[\\]()])|新加坡|狮城|獅城|singapore|(?:^|[\\s\\-_|\\[\\]()])sg(?:$|[\\s\\-_|\\[\\]()])|美国|美國|united\\s?states|america|usa|(?:^|[\\s\\-_|\\[\\]()])us(?:$|[\\s\\-_|\\[\\]()]))"
+Auto_Filter = NameRegex, FilterKey = "(?i)^(0[.][0-9]+|1[.]0)X[ ]+"
+Low_Cost_Filter = NameRegex, FilterKey = "(?i)^0[.][0-9]+X[ ]+"
 HK_Filter = NameRegex, FilterKey = "(?i)(香港|hong\\s?kong|(?:^|[\\s\\-_|\\[\\]()])hk(?:$|[\\s\\-_|\\[\\]()]))"
 TW_Filter = NameRegex, FilterKey = "(?i)(台湾|台灣|taiwan|(?:^|[\\s\\-_|\\[\\]()])tw(?:$|[\\s\\-_|\\[\\]()]))"
 JP_Filter = NameRegex, FilterKey = "(?i)(日本|japan|(?:^|[\\s\\-_|\\[\\]()])jp(?:$|[\\s\\-_|\\[\\]()]))"
@@ -96,7 +102,7 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/
 https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Porn.list, policy=Streaming, tag=Porn, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/GlobalMedia/GlobalMedia.list, policy=Streaming, tag=GlobalMedia, enabled=true
 
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Download/Download.list, policy=DIRECT, tag=Download, enabled=false
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Download/Download.list, policy=Download, tag=Download, enabled=false
 
 https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list, policy=Default Proxy, tag=ProxyGFWlist, enabled=true
 
