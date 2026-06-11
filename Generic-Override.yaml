@@ -3,13 +3,13 @@ proxy-groups:
     type: "select"
     proxies:
       - "Auto"
-      - "Express"
       - "HK"
       - "TW"
       - "JP"
       - "SG"
       - "US"
-      - "Download"
+      - "Low Cost"
+      - "DIRECT"
 
   - name: "AI + Research"
     type: "select"
@@ -33,7 +33,6 @@ proxy-groups:
     type: "select"
     proxies:
       - "DIRECT"
-      - "Download"
       - "HK"
       - "TW"
       - "JP"
@@ -43,7 +42,6 @@ proxy-groups:
   - name: "Streaming"
     type: "select"
     proxies:
-      - "Express"
       - "HK"
       - "TW"
       - "JP"
@@ -85,6 +83,7 @@ proxy-groups:
       - "JP"
       - "SG"
       - "US"
+      - "Low Cost"
 
   - name: "Final"
     type: "select"
@@ -99,17 +98,32 @@ proxy-groups:
     interval: 180
     tolerance: 100
     include-all-proxies: true
+    filter: "(?i)^(?:0\\.[0-9]+|1\\.0)X\\s+"
 
-  - name: "Express"
+  - name: "Low Cost"
+    type: "select"
+    proxies:
+      - "Low Cost Auto"
+    include-all-proxies: true
+    filter: "(?i)^0\\.[0-9]+X\\s+"
+
+  - name: "Low Cost Auto"
     type: "url-test"
     hidden: true
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 100
     include-all-proxies: true
-    filter: "(?i)(香港|hong\\s?kong|(?:^|[\\s\\-_|\\[\\]()])hk(?:$|[\\s\\-_|\\[\\]()])|台湾|台灣|taiwan|(?:^|[\\s\\-_|\\[\\]()])tw(?:$|[\\s\\-_|\\[\\]()])|日本|japan|(?:^|[\\s\\-_|\\[\\]()])jp(?:$|[\\s\\-_|\\[\\]()])|新加坡|狮城|獅城|singapore|(?:^|[\\s\\-_|\\[\\]()])sg(?:$|[\\s\\-_|\\[\\]()])|美国|美國|united\\s?states|america|usa|(?:^|[\\s\\-_|\\[\\]()])us(?:$|[\\s\\-_|\\[\\]()]))"
+    filter: "(?i)^0\\.[0-9]+X\\s+"
 
   - name: "HK"
+    type: "select"
+    proxies:
+      - "HK Auto"
+    include-all-proxies: true
+    filter: "(?i)(香港|hong\\s?kong|(?:^|[\\s\\-_|\\[\\]()])hk(?:$|[\\s\\-_|\\[\\]()]))"
+
+  - name: "HK Auto"
     type: "url-test"
     hidden: true
     url: "http://www.gstatic.com/generate_204"
@@ -119,6 +133,13 @@ proxy-groups:
     filter: "(?i)(香港|hong\\s?kong|(?:^|[\\s\\-_|\\[\\]()])hk(?:$|[\\s\\-_|\\[\\]()]))"
 
   - name: "TW"
+    type: "select"
+    proxies:
+      - "TW Auto"
+    include-all-proxies: true
+    filter: "(?i)(台湾|台灣|taiwan|(?:^|[\\s\\-_|\\[\\]()])tw(?:$|[\\s\\-_|\\[\\]()]))"
+
+  - name: "TW Auto"
     type: "url-test"
     hidden: true
     url: "http://www.gstatic.com/generate_204"
@@ -128,6 +149,13 @@ proxy-groups:
     filter: "(?i)(台湾|台灣|taiwan|(?:^|[\\s\\-_|\\[\\]()])tw(?:$|[\\s\\-_|\\[\\]()]))"
 
   - name: "JP"
+    type: "select"
+    proxies:
+      - "JP Auto"
+    include-all-proxies: true
+    filter: "(?i)(日本|japan|(?:^|[\\s\\-_|\\[\\]()])jp(?:$|[\\s\\-_|\\[\\]()]))"
+
+  - name: "JP Auto"
     type: "url-test"
     hidden: true
     url: "http://www.gstatic.com/generate_204"
@@ -137,6 +165,13 @@ proxy-groups:
     filter: "(?i)(日本|japan|(?:^|[\\s\\-_|\\[\\]()])jp(?:$|[\\s\\-_|\\[\\]()]))"
 
   - name: "SG"
+    type: "select"
+    proxies:
+      - "SG Auto"
+    include-all-proxies: true
+    filter: "(?i)(新加坡|狮城|獅城|singapore|(?:^|[\\s\\-_|\\[\\]()])sg(?:$|[\\s\\-_|\\[\\]()]))"
+
+  - name: "SG Auto"
     type: "url-test"
     hidden: true
     url: "http://www.gstatic.com/generate_204"
@@ -146,6 +181,13 @@ proxy-groups:
     filter: "(?i)(新加坡|狮城|獅城|singapore|(?:^|[\\s\\-_|\\[\\]()])sg(?:$|[\\s\\-_|\\[\\]()]))"
 
   - name: "US"
+    type: "select"
+    proxies:
+      - "US Auto"
+    include-all-proxies: true
+    filter: "(?i)(美国|美國|united\\s?states|america|usa|(?:^|[\\s\\-_|\\[\\]()])us(?:$|[\\s\\-_|\\[\\]()]))"
+
+  - name: "US Auto"
     type: "url-test"
     hidden: true
     url: "http://www.gstatic.com/generate_204"
@@ -357,6 +399,13 @@ rules:
 
   - RULE-SET,ChinaDomain,DIRECT
 
+  - RULE-SET,SteamCN,DIRECT
+  - GEOSITE,STEAM@CN,DIRECT
+  - GEOSITE,CATEGORY-GAMES@CN,DIRECT
+  - RULE-SET,Steam,Steam
+  - GEOSITE,STEAM,Steam
+  - GEOSITE,CATEGORY-GAMES,Steam
+
   - RULE-SET,Google,AI + Research
   - RULE-SET,AI,AI + Research
   - RULE-SET,Scholar,AI + Research
@@ -368,9 +417,6 @@ rules:
   - RULE-SET,GitHub,Developer
   - RULE-SET,Developer,Developer
 
-  - RULE-SET,SteamCN,DIRECT
-  - RULE-SET,Steam,Steam
-
   - RULE-SET,Telegram,Default Proxy
   - RULE-SET,X,Default Proxy
 
@@ -379,14 +425,10 @@ rules:
   - RULE-SET,PornAsia,Streaming
   - RULE-SET,GlobalMedia,Streaming
 
-  - RULE-SET,Download,DIRECT
+  - RULE-SET,Download,Download
 
   - RULE-SET,ProxyGFWlist,Default Proxy
 
   - GEOIP,CN,DIRECT
-  - GEOSITE,STEAM@CN,DIRECT
-  - GEOSITE,CATEGORY-GAMES@CN,DIRECT
-  - GEOSITE,STEAM,Steam
-  - GEOSITE,CATEGORY-GAMES,Steam
 
   - MATCH,Final

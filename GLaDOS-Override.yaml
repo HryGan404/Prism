@@ -3,61 +3,81 @@ proxy-groups:
     type: "select"
     proxies:
       - "Auto"
-      - "Express"
-      - "Premium"
-      - "Download"
-      - "TW Fixed IP"
-      - "US Fixed IP"
+      - "Fast"
+      - "Balanced"
+      - "TLS"
       - "TW"
+      - "JP"
       - "US"
-    include-all-proxies: true
-    filter: "^(?:US-Dedicated-F[12]|US-X1|TW-X1|US-D[12])-\\d+$"
+      - "SG"
+      - "TW Fixed IP"
+      - "JP Fixed IP"
+      - "US Fixed IP"
+      - "DIRECT"
 
   - name: "AI + Research"
     type: "select"
     proxies:
       - "TW Fixed IP"
+      - "JP Fixed IP"
       - "US Fixed IP"
-    include-all-proxies: true
-    filter: "^(?:US-Dedicated-F[12]|TW-IPv6-P1)-\\d+$"
+      - "TW"
+      - "JP"
+      - "US"
+      - "SG"
 
   - name: "Developer"
     type: "select"
     proxies:
+      - "Fast"
+      - "Balanced"
+      - "TLS"
+      - "TW"
+      - "JP"
+      - "US"
+      - "SG"
       - "TW Fixed IP"
+      - "JP Fixed IP"
       - "US Fixed IP"
-    include-all-proxies: true
-    filter: "^(?:US-Dedicated-F[12]|Fast-B1|TW-IPv6-P1)-\\d+$"
 
   - name: "Steam"
     type: "select"
     proxies:
       - "DIRECT"
-      - "Express"
-      - "Download"
-    include-all-proxies: true
-    filter: "^(?:US-D[12]|US-X1)-\\d+$"
+      - "Fast"
+      - "Balanced"
+      - "TW"
+      - "JP"
+      - "US"
+      - "SG"
 
   - name: "Streaming"
     type: "select"
     proxies:
-      - "Express"
-    include-all-proxies: true
-    filter: "^(?:US-Balancer-N1|US-Netflix-N2|Balancer-B1|TW-IPv6-P1)-\\d+$"
+      - "Balanced"
+      - "TW"
+      - "JP"
+      - "US"
+      - "US Streaming"
+      - "SG"
 
   - name: "Apple"
     type: "select"
     proxies:
       - "DIRECT"
-    include-all-proxies: true
-    filter: "^(?:US-Balancer-N1|US-Netflix-N2)-\\d+$"
+      - "TW"
+      - "JP"
+      - "US"
+      - "SG"
 
   - name: "Microsoft"
     type: "select"
     proxies:
       - "DIRECT"
-    include-all-proxies: true
-    filter: "^(?:US-Balancer-N1|US-Netflix-N2)-\\d+$"
+      - "TW"
+      - "JP"
+      - "US"
+      - "SG"
 
   - name: "AdBlock"
     type: "select"
@@ -65,21 +85,17 @@ proxy-groups:
       - "REJECT"
       - "DIRECT"
 
-  - name: "Premium"
-    type: "select"
-    proxies:
-      - "Express"
-      - "TW Fixed IP"
-      - "US Fixed IP"
-    include-all-proxies: true
-    filter: "^(?:US-Dedicated-F[12]|TW-IPv6-P1)-\\d+$"
-
   - name: "Download"
     type: "select"
     proxies:
       - "DIRECT"
-    include-all-proxies: true
-    filter: "^US-D[12]-\\d+$"
+      - "Fast"
+      - "Balanced"
+      - "TW"
+      - "JP"
+      - "US"
+      - "US Download"
+      - "SG"
 
   - name: "Final"
     type: "select"
@@ -96,22 +112,40 @@ proxy-groups:
     include-all-proxies: true
     filter: "^(?:Fast-B1|Balancer-B1|TLS-S1|US-Balancer-N1|US-Netflix-N2)-\\d+$"
 
-  - name: "Express"
+  - name: "Fast"
     type: "url-test"
     hidden: true
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 100
     include-all-proxies: true
-    filter: "^(?:Balancer-B1|US-X1|US-D[12])-\\d+$"
+    filter: "^Fast-B1-\\d+$"
 
-  - name: "US Fixed IP"
-    type: "fallback"
+  - name: "Balanced"
+    type: "url-test"
     hidden: true
     url: "http://www.gstatic.com/generate_204"
-    interval: 120
+    interval: 300
+    tolerance: 100
     include-all-proxies: true
-    filter: "^US-Dedicated-F[12]-\\d+$"
+    filter: "^Balancer-B1-\\d+$"
+
+  - name: "TLS"
+    type: "url-test"
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 100
+    include-all-proxies: true
+    filter: "^TLS-S1-\\d+$"
+
+  - name: "TW"
+    type: "url-test"
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    include-all-proxies: true
+    filter: "^TW-X1-\\d+$"
 
   - name: "TW Fixed IP"
     type: "fallback"
@@ -121,6 +155,22 @@ proxy-groups:
     include-all-proxies: true
     filter: "^TW-IPv6-P1-\\d+$"
 
+  - name: "JP"
+    type: "fallback"
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 120
+    include-all-proxies: true
+    filter: "^JP-Dedicated-B1-\\d+$"
+
+  - name: "JP Fixed IP"
+    type: "fallback"
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 120
+    include-all-proxies: true
+    filter: "^JP-Dedicated-B1-\\d+$"
+
   - name: "US"
     type: "url-test"
     hidden: true
@@ -129,13 +179,38 @@ proxy-groups:
     include-all-proxies: true
     filter: "^US-X1-\\d+$"
 
-  - name: "TW"
+  - name: "US Fixed IP"
+    type: "fallback"
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 120
+    include-all-proxies: true
+    filter: "^(?:US-Dedicated-B1|US-Dedicated-F[12])-\\d+$"
+
+  - name: "US Download"
     type: "url-test"
     hidden: true
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     include-all-proxies: true
-    filter: "^TW-X1-\\d+$"
+    filter: "^US-D[12]-\\d+$"
+
+  - name: "US Streaming"
+    type: "url-test"
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 100
+    include-all-proxies: true
+    filter: "^(?:US-Netflix-N2|US-Balancer-N1)-\\d+$"
+
+  - name: "SG"
+    type: "url-test"
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    include-all-proxies: true
+    filter: "^SG-X5-\\d+$"
 
 rule-providers:
   Lan:
@@ -340,6 +415,13 @@ rules:
 
   - RULE-SET,ChinaDomain,DIRECT
 
+  - RULE-SET,SteamCN,DIRECT
+  - GEOSITE,STEAM@CN,DIRECT
+  - GEOSITE,CATEGORY-GAMES@CN,DIRECT
+  - RULE-SET,Steam,Steam
+  - GEOSITE,STEAM,Steam
+  - GEOSITE,CATEGORY-GAMES,Steam
+
   - RULE-SET,Google,AI + Research
   - RULE-SET,AI,AI + Research
   - RULE-SET,Scholar,AI + Research
@@ -351,9 +433,6 @@ rules:
   - RULE-SET,GitHub,Developer
   - RULE-SET,Developer,Developer
 
-  - RULE-SET,SteamCN,DIRECT
-  - RULE-SET,Steam,Steam
-
   - RULE-SET,Telegram,Default Proxy
   - RULE-SET,X,Default Proxy
 
@@ -362,14 +441,10 @@ rules:
   - RULE-SET,PornAsia,Streaming
   - RULE-SET,GlobalMedia,Streaming
 
-  - RULE-SET,Download,DIRECT
+  - RULE-SET,Download,Download
 
   - RULE-SET,ProxyGFWlist,Default Proxy
 
   - GEOIP,CN,DIRECT
-  - GEOSITE,STEAM@CN,DIRECT
-  - GEOSITE,CATEGORY-GAMES@CN,DIRECT
-  - GEOSITE,STEAM,Steam
-  - GEOSITE,CATEGORY-GAMES,Steam
 
   - MATCH,Final
