@@ -150,6 +150,11 @@ proxy-groups:
     proxies:
       - REJECT
       - DIRECT
+  - name: Final
+    type: select
+    proxies:
+      - Default Proxy
+      - DIRECT
   - name: Fast
     type: url-test
     hidden: true
@@ -444,7 +449,8 @@ rules:
   - RULE-SET,Gemini,Research + AI
   - RULE-SET,Copilot,Research + AI
   - RULE-SET,Scholar,Research + AI
-  - RULE-SET,GoogleSearch,Research + AI
+  
+  - RULE-SET,GoogleSearch,Default Proxy
   - RULE-SET,Google,Research + AI
 
   - RULE-SET,GitHub,Developer
@@ -482,4 +488,4 @@ rules:
   - RULE-SET,Proxy,Default Proxy
   - GEOIP,CN,DIRECT
   - GEOIP,PRIVATE,DIRECT
-  - MATCH,Default Proxy
+  - MATCH,Final
