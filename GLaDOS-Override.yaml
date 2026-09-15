@@ -1,160 +1,113 @@
-dns:
-  fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - +.miwifi.com
-    - +.docker.io
-    - +.market.xiaomi.com
-    - +.push.apple.com
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - stun.*.*.*
-    - time.*.com
-    - time.*.gov
-    - time.*.edu.cn
-    - time.*.apple.com
-    - time-ios.apple.com
-    - ntp.*.com
-    - '*.ntp.org.cn'
-    - pool.ntp.org
-    - captive.apple.com
-    - connectivitycheck.gstatic.com
-    - connectivitycheck.platform.hicloud.com
-    - msftconnecttest.com
-    - msftncsi.com
-    - dns.msftncsi.com
-    - www.msftconnecttest.com
-  nameserver-policy:
-    rule-set:SteamCN: &china_dns
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
-    rule-set:OpenAI: &foreign_dns
-      - https://dns.google/dns-query
-      - https://cloudflare-dns.com/dns-query
-    rule-set:Claude: *foreign_dns
-    rule-set:Gemini: *foreign_dns
-    rule-set:Copilot: *foreign_dns
-    rule-set:Scholar: *foreign_dns
-    rule-set:GoogleSearch: *foreign_dns
-    rule-set:Google: *foreign_dns
-    rule-set:YouTube: *foreign_dns
-    rule-set:Netflix: *foreign_dns
-    rule-set:GlobalMedia: *foreign_dns
-    rule-set:Steam: *foreign_dns
-    rule-set:Xbox: *foreign_dns
-    rule-set:Microsoft: *foreign_dns
-    rule-set:Game: *foreign_dns
-    rule-set:Apple: *foreign_dns
-    rule-set:GitHub: *foreign_dns
-    rule-set:Developer: *foreign_dns
-    rule-set:Telegram: *foreign_dns
-    rule-set:Twitter: *foreign_dns
-    rule-set:Discord: *foreign_dns
-    rule-set:Proxy: *foreign_dns
-    rule-set:China: *china_dns
-    "+.huggingface.co": *foreign_dns
-    "+.hf.co": *foreign_dns
-    "+.civitai.com": *foreign_dns
-    "+.ollama.ai": *foreign_dns
-    "+.ollama.com": *foreign_dns
-    "+.replicate.delivery": *foreign_dns
-    "+.wandb.ai": *foreign_dns
-    "+.modelzoo.co": *foreign_dns
-    "+.download.pytorch.org": *foreign_dns
-    "+.ngc.nvidia.com": *foreign_dns
-    "+.lmstudio.ai": *foreign_dns
 proxy-groups:
+  # Select groups
   - name: Default Proxy
     type: select
     proxies:
       - Auto
       - Fast
-      - Balancer
+      - Express
+      - TW Private IP
+      - US Premium
+      - US Dedicated
+      - JP Dedicated
+      - US
+      - TW
       - TLS
-      - TW Fixed IPv6
-      - JP Dedicated
-      - US Dedicated
-      - TW
-      - US
-      - SG
       - DIRECT
-  - name: Research + AI
+
+  - name: AI + Research
     type: select
     proxies:
-      - TW Fixed IPv6
-      - JP Dedicated
+      - TW Private IP
       - US Dedicated
-      - TW
-      - US
-      - SG
-      - DIRECT
-  - name: Developer
-    type: select
-    proxies:
-      - TW Fixed IPv6
       - JP Dedicated
-      - US Dedicated
-      - Fast
-      - Balancer
-      - TW
       - US
-      - SG
-      - DIRECT
+      - TW
+      - TLS
+
   - name: Streaming
     type: select
     proxies:
-      - US Streaming
-      - TW
+      - Express
+      - TW Private IP
+      - US Premium
+      - US Netflix
+      - US Dedicated
+      - JP Dedicated
+
+  - name: Developer
+    type: select
+    proxies:
+      - Fast
+      - TW Private IP
+      - US Dedicated
+      - JP Dedicated
       - US
-      - SG
-      - DIRECT
+      - TW
+      - TLS
+
   - name: Steam
     type: select
     proxies:
       - DIRECT
       - Fast
-      - Balancer
-      - TW
+      - Download
+      - TW Private IP
+      - US Dedicated
+      - JP Dedicated
       - US
-  - name: Game
+      - TW
+      - TLS
+
+  - name: Games
     type: select
     proxies:
       - Fast
-      - Balancer
-      - TW
+      - Download
+      - TW Private IP
+      - US Dedicated
+      - JP Dedicated
       - US
+      - TW
+      - TLS
       - DIRECT
+
   - name: Apple
     type: select
     proxies:
       - DIRECT
-      - Fast
-      - Balancer
-      - TW
-      - US
+      - US Premium
+      - US Netflix
+
   - name: Microsoft
     type: select
     proxies:
       - DIRECT
-      - Fast
-      - Balancer
-      - TW
-      - US
-  - name: Download
-    type: select
-    proxies:
-      - US Download
-      - DIRECT
-  - name: Advertising
+      - US Premium
+      - US Netflix
+
+  - name: AdBlock
     type: select
     proxies:
       - REJECT
       - DIRECT
+
   - name: Final
     type: select
     proxies:
       - Default Proxy
       - DIRECT
+
+  # Hidden groups
+  - name: Auto
+    type: url-test
+    hidden: true
+    url: http://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 100
+    include-all-proxies: true
+    filter: ^(?:Fast-B1|Balancer-B1|TW-IPv6-P1|US-Balancer-N1|US-Dedicated-B1|JP-Dedicated-B1|US-X1|TW-X1|TLS-[TLS]1-N\d+)-\d+$
+
   - name: Fast
     type: url-test
     hidden: true
@@ -163,7 +116,8 @@ proxy-groups:
     tolerance: 100
     include-all-proxies: true
     filter: ^Fast-B1-\d+$
-  - name: Balancer
+
+  - name: Express
     type: url-test
     hidden: true
     url: http://www.gstatic.com/generate_204
@@ -171,6 +125,79 @@ proxy-groups:
     tolerance: 100
     include-all-proxies: true
     filter: ^Balancer-B1-\d+$
+
+  - name: Download
+    type: url-test
+    hidden: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    include-all-proxies: true
+    filter: ^US-D1-\d+$
+
+  - name: TW Private IP
+    type: fallback
+    hidden: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    include-all-proxies: true
+    filter: ^TW-IPv6-P1-\d+$
+
+  - name: US Premium
+    type: url-test
+    hidden: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    include-all-proxies: true
+    filter: ^US-Balancer-N1-\d+$
+
+  - name: US Netflix
+    type: url-test
+    hidden: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    include-all-proxies: true
+    filter: ^US-Netflix-N2-\d+$
+
+  - name: US Dedicated
+    type: fallback
+    hidden: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    include-all-proxies: true
+    filter: ^US-Dedicated-B1-\d+$
+
+  - name: JP Dedicated
+    type: fallback
+    hidden: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    include-all-proxies: true
+    filter: ^JP-Dedicated-B1-\d+$
+
+  - name: US
+    type: url-test
+    hidden: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    include-all-proxies: true
+    filter: ^US-X1-\d+$
+
+  - name: TW
+    type: url-test
+    hidden: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    include-all-proxies: true
+    filter: ^TW-X1-\d+$
+
   - name: TLS
     type: url-test
     hidden: true
@@ -178,287 +205,176 @@ proxy-groups:
     interval: 300
     tolerance: 100
     include-all-proxies: true
-    filter: ^TLS-[LST]1-\d+$
-  - name: US Dedicated
-    type: url-test
-    hidden: true
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 100
-    include-all-proxies: true
-    filter: ^US-Dedicated-B1-\d+$
-  - name: JP Dedicated
-    type: url-test
-    hidden: true
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 100
-    include-all-proxies: true
-    filter: ^JP-Dedicated-B1-\d+$
-  - name: TW Fixed IPv6
-    type: url-test
-    hidden: true
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 100
-    include-all-proxies: true
-    filter: ^TW-IPv6-P1-\d+$
-  - name: US Streaming
-    type: url-test
-    hidden: true
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 100
-    include-all-proxies: true
-    filter: ^US-(?:Balancer|Netflix)-N\d+-\d+$
-  - name: US Download
-    type: url-test
-    hidden: true
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    include-all-proxies: true
-    filter: ^US-D1-\d+$
-  - name: US
-    type: url-test
-    hidden: true
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    include-all-proxies: true
-    filter: ^US-X1-\d+$
-  - name: TW
-    type: url-test
-    hidden: true
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    include-all-proxies: true
-    filter: ^TW-X1-\d+$
-  - name: SG
-    type: url-test
-    hidden: true
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    include-all-proxies: true
-    filter: ^SG-X5-\d+$
-  - name: Auto
-    type: url-test
-    hidden: true
-    url: http://www.gstatic.com/generate_204
-    interval: 180
-    tolerance: 100
-    include-all-proxies: true
-    filter: ^(?:Fast-B1|Balancer-B1|TLS-[LST]1|US-Dedicated-B1|JP-Dedicated-B1|US-(?:Balancer|Netflix)-N\d+)-\d+$
+    filter: ^TLS-[TLS]1-\d+$
+
 rule-providers:
   Lan:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Lan/Lan.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml
     path: ./rule-providers/Lan.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
   Direct:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Direct/Direct.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml
     path: ./rule-providers/Direct.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
   AdvertisingLite:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/AdvertisingLite/AdvertisingLite_Classical.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Classical.yaml
     path: ./rule-providers/AdvertisingLite_Classical.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
   SteamCN:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/SteamCN/SteamCN.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SteamCN/SteamCN.yaml
     path: ./rule-providers/SteamCN.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
   Steam:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Steam/Steam.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.yaml
     path: ./rule-providers/Steam.yaml
     interval: 86400
     behavior: classical
     format: yaml
-  Xbox:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Xbox/Xbox.yaml
-    path: ./rule-providers/Xbox.yaml
-    interval: 86400
-    behavior: classical
-    format: yaml
-  Microsoft:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml
-    path: ./rule-providers/Microsoft.yaml
-    interval: 86400
-    behavior: classical
-    format: yaml
-  Game:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml
-    path: ./rule-providers/Game.yaml
-    interval: 86400
-    behavior: classical
-    format: yaml
-  Apple:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple_Classical.yaml
-    path: ./rule-providers/Apple_Classical.yaml
-    interval: 86400
-    behavior: classical
-    format: yaml
-  China:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/China/China_Classical.yaml
-    path: ./rule-providers/China.yaml
-    interval: 86400
-    behavior: classical
-    format: yaml
-  OpenAI:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml
-    path: ./rule-providers/OpenAI.yaml
-    interval: 86400
-    behavior: classical
-    format: yaml
+
   Claude:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml
     path: ./rule-providers/Claude.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
+  OpenAI:
+    type: http
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml
+    path: ./rule-providers/OpenAI.yaml
+    interval: 86400
+    behavior: classical
+    format: yaml
+
   Gemini:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.yaml
     path: ./rule-providers/Gemini.yaml
     interval: 86400
     behavior: classical
     format: yaml
-  Copilot:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml
-    path: ./rule-providers/Copilot.yaml
-    interval: 86400
-    behavior: classical
-    format: yaml
+
   Scholar:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Scholar/Scholar.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Scholar/Scholar.yaml
     path: ./rule-providers/Scholar.yaml
     interval: 86400
     behavior: classical
     format: yaml
-  GoogleSearch:
+
+  GoogleDrive:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GoogleSearch/GoogleSearch.yaml
-    path: ./rule-providers/GoogleSearch.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GoogleDrive/GoogleDrive.yaml
+    path: ./rule-providers/GoogleDrive.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
   Google:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml
     path: ./rule-providers/Google.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
   GitHub:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml
     path: ./rule-providers/GitHub.yaml
     interval: 86400
     behavior: classical
     format: yaml
-  Developer:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Developer/Developer.yaml
-    path: ./rule-providers/Developer.yaml
-    interval: 86400
-    behavior: classical
-    format: yaml
+
   YouTube:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml
     path: ./rule-providers/YouTube.yaml
     interval: 86400
     behavior: classical
     format: yaml
-  Netflix:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix_Classical.yaml
-    path: ./rule-providers/Netflix_Classical.yaml
-    interval: 86400
-    behavior: classical
-    format: yaml
-  GlobalMedia:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml
-    path: ./rule-providers/GlobalMedia_Classical.yaml
-    interval: 86400
-    behavior: classical
-    format: yaml
+
   Telegram:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml
     path: ./rule-providers/Telegram.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
   Twitter:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Twitter/Twitter.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml
     path: ./rule-providers/Twitter.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
   Discord:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Discord/Discord.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord.yaml
     path: ./rule-providers/Discord.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
   Proxy:
     type: http
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Proxy/Proxy_Classical.yaml
-    path: ./rule-providers/Proxy.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical.yaml
+    path: ./rule-providers/Proxy_Classical.yaml
     interval: 86400
     behavior: classical
     format: yaml
+
 rules:
+  # GLaDOS-specific URL
+  - DOMAIN-SUFFIX,test-01-cn.gladns.com,DIRECT
+  - DOMAIN-SUFFIX,test-01-cn.gladns.net,DIRECT
+  - DOMAIN-SUFFIX,glados.vip,US Dedicated
+  - DOMAIN-SUFFIX,glados.work,TW Private IP
+
   - RULE-SET,Lan,DIRECT
   - RULE-SET,Direct,DIRECT
-  - RULE-SET,AdvertisingLite,Advertising
+  - RULE-SET,AdvertisingLite,AdBlock
 
-  # Specialized rules must precede China.
   - RULE-SET,SteamCN,DIRECT
-  - RULE-SET,Steam,Steam
-  - RULE-SET,Xbox,Microsoft
-  - RULE-SET,Microsoft,Microsoft
-  - RULE-SET,Game,Game
-  - RULE-SET,Apple,Apple
-  - RULE-SET,China,DIRECT
+  - GEOSITE,steam@cn,DIRECT
+  - GEOSITE,category-games@cn,DIRECT
 
-  - RULE-SET,OpenAI,Research + AI
-  - RULE-SET,Claude,Research + AI
-  - RULE-SET,Gemini,Research + AI
-  - RULE-SET,Copilot,Research + AI
-  - RULE-SET,Scholar,Research + AI
+  - RULE-SET,Steam,Steam
+  - GEOSITE,steam,Steam
+  - GEOSITE,category-games,Games
   
-  - RULE-SET,GoogleSearch,Default Proxy
-  - RULE-SET,Google,Research + AI
+  - RULE-SET,Claude,AI + Research
+  - RULE-SET,OpenAI,AI + Research
+  - RULE-SET,Gemini,AI + Research
+  - RULE-SET,Scholar,AI + Research
+
+  - RULE-SET,GoogleDrive,Download
+
+  - RULE-SET,Google,Default Proxy
 
   - RULE-SET,GitHub,Developer
-  - RULE-SET,Developer,Developer
 
   - RULE-SET,YouTube,Streaming
-  - RULE-SET,Netflix,Streaming
-  - RULE-SET,GlobalMedia,Streaming
 
   # GLaDOS-specific model/download exceptions.
   - DOMAIN-SUFFIX,huggingface.co,Download
@@ -482,10 +398,9 @@ rules:
   - RULE-SET,Twitter,Default Proxy
   - RULE-SET,Discord,Default Proxy
 
-  - DOMAIN-SUFFIX,glados.vip,Default Proxy
-  - DOMAIN-SUFFIX,glados.work,Default Proxy
-
   - RULE-SET,Proxy,Default Proxy
-  - GEOIP,CN,DIRECT
-  - GEOIP,PRIVATE,DIRECT
+  
+  - GEOIP,PRIVATE,DIRECT,no-resolve
+  - GEOIP,CN,DIRECT,no-resolve
+
   - MATCH,Final
