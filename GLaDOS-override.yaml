@@ -103,7 +103,7 @@ proxy-groups:
     type: url-test
     hidden: true
     url: http://www.gstatic.com/generate_204
-    interval: 180
+    interval: 300
     tolerance: 100
     include-all-proxies: true
     filter: ^(?:Fast-B1|Balancer-B1|TW-IPv6-P1|US-Balancer-N1|US-Dedicated-B1|JP-Dedicated-B1|US-X1|TW-X1|TLS-[TLS]1)-\d+$
@@ -140,7 +140,6 @@ proxy-groups:
     hidden: true
     url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 100
     include-all-proxies: true
     filter: ^TW-IPv6-P1-\d+$
 
@@ -167,7 +166,6 @@ proxy-groups:
     hidden: true
     url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 100
     include-all-proxies: true
     filter: ^US-Dedicated-B1-\d+$
 
@@ -176,7 +174,6 @@ proxy-groups:
     hidden: true
     url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 100
     include-all-proxies: true
     filter: ^JP-Dedicated-B1-\d+$
 
