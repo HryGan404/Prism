@@ -32,75 +32,104 @@ resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/dow
 [Proxy Chain]
 
 [Proxy Group]
-Default Proxy = select,Auto,Fast,Balancer,TLS,TW Fixed IPv6,US Dedicated,JP Dedicated,TW,US,SG,DIRECT,url = http://cp.cloudflare.com/generate_204
-Research + AI = select,TW Fixed IPv6,JP Dedicated,US Dedicated,TW,US,SG,DIRECT,url = http://cp.cloudflare.com/generate_204
-Developer = select,TW Fixed IPv6,JP Dedicated,US Dedicated,Fast,Balancer,TW,US,SG,DIRECT,url = http://cp.cloudflare.com/generate_204
-Steam = select,DIRECT,Fast,Balancer,TW,US,url = http://cp.cloudflare.com/generate_204
-Game = select,Fast,Balancer,TW,US,DIRECT,url = http://cp.cloudflare.com/generate_204
-Apple = select,DIRECT,Fast,Balancer,TW,US,url = http://cp.cloudflare.com/generate_204
-Microsoft = select,DIRECT,Fast,Balancer,TW,US,url = http://cp.cloudflare.com/generate_204
-Streaming = select,US Streaming,TW,US,SG,DIRECT,url = http://cp.cloudflare.com/generate_204
-Download = select,US Download,DIRECT,url = http://cp.cloudflare.com/generate_204
-Advertising = select,REJECT,DIRECT
+Default Proxy = select,Auto,Fast,Express,TW Private IP,US Premium,US Dedicated,JP Dedicated,US,TW,TLS,DIRECT,url = http://cp.cloudflare.com/generate_204
+AI + Research = select,TW Private IP,US Dedicated,JP Dedicated,US,TW,TLS,url = http://cp.cloudflare.com/generate_204
+Streaming = select,Express,TW Private IP,US Premium,US Netflix,US Dedicated,JP Dedicated,url = http://cp.cloudflare.com/generate_204
+Developer = select,Fast,TW Private IP,US Dedicated,JP Dedicated,US,TW,TLS,url = http://cp.cloudflare.com/generate_204
+Steam = select,DIRECT,Fast,Download,TW Private IP,US Dedicated,JP Dedicated,US,TW,TLS,url = http://cp.cloudflare.com/generate_204
+Games = select,Fast,Download,TW Private IP,US Dedicated,JP Dedicated,US,TW,TLS,DIRECT,url = http://cp.cloudflare.com/generate_204
+Apple = select,DIRECT,US Premium,US Netflix,url = http://cp.cloudflare.com/generate_204
+Microsoft = select,DIRECT,US Premium,US Netflix,url = http://cp.cloudflare.com/generate_204
+AdBlock = select,REJECT,DIRECT
+Final = select,Default Proxy,DIRECT
 
-Auto = url-test,Auto_Filter,url = http://cp.cloudflare.com/generate_204,interval = 180,tolerance = 100
-Fast = url-test,Fast_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-Balancer = url-test,Balancer_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-TLS = url-test,TLS_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-TW = url-test,TW_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300
-TW Fixed IPv6 = url-test,TW_Fixed_IP_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-JP Dedicated = url-test,JP_Dedicated_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-US = url-test,US_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300
-US Dedicated = url-test,US_Dedicated_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-US Streaming = url-test,Streaming_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-US Download = url-test,Download_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300
-SG = url-test,SG_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300
+Auto = url-test,Auto_Filter,url = http://www.gstatic.com/generate_204,interval = 180,tolerance = 100
+Fast = url-test,Fast_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+Express = url-test,Express_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+Download = url-test,Download_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+TW Private IP = fallback,TW_Private_IP_Filter,url = http://www.gstatic.com/generate_204,interval = 300
+US Premium = url-test,US_Premium_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+US Netflix = url-test,US_Netflix_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+US Dedicated = fallback,US_Dedicated_Filter,url = http://www.gstatic.com/generate_204,interval = 300
+JP Dedicated = fallback,JP_Dedicated_Filter,url = http://www.gstatic.com/generate_204,interval = 300
+US = url-test,US_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+TW = url-test,TW_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+TLS = url-test,TLS_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
 
 [Remote Filter]
-Auto_Filter = NameRegex, FilterKey = "(?i)^(Fast-B1|Balancer-B1|TLS-[LST]1|US-Dedicated-B1|JP-Dedicated-B1|US-(Balancer|Netflix)-N[0-9]+)-[0-9]+$"
+Auto_Filter = NameRegex, FilterKey = "(?i)^(Fast-B1|Balancer-B1|TW-IPv6-P1|US-Balancer-N1|US-Dedicated-B1|JP-Dedicated-B1|US-X1|TW-X1|TLS-[LST]1)-[0-9]+$"
 Fast_Filter = NameRegex, FilterKey = "(?i)^Fast-B1-[0-9]+$"
-Balancer_Filter = NameRegex, FilterKey = "(?i)^Balancer-B1-[0-9]+$"
-TLS_Filter = NameRegex, FilterKey = "(?i)^TLS-[LST]1-[0-9]+$"
-TW_Filter = NameRegex, FilterKey = "(?i)^TW-X1-[0-9]+$"
-TW_Fixed_IP_Filter = NameRegex, FilterKey = "(?i)^TW-IPv6-P1-[0-9]+$"
+Express_Filter = NameRegex, FilterKey = "(?i)^Balancer-B1-[0-9]+$"
+Download_Filter = NameRegex, FilterKey = "(?i)^US-D1-[0-9]+$"
+TW_Private_IP_Filter = NameRegex, FilterKey = "(?i)^TW-IPv6-P1-[0-9]+$"
+US_Premium_Filter = NameRegex, FilterKey = "(?i)^US-Balancer-N1-[0-9]+$"
+US_Netflix_Filter = NameRegex, FilterKey = "(?i)^US-Netflix-N2-[0-9]+$"
+US_Dedicated_Filter = NameRegex, FilterKey = "(?i)^US-Dedicated-B1-[0-9]+$"
 JP_Dedicated_Filter = NameRegex, FilterKey = "(?i)^JP-Dedicated-B1-[0-9]+$"
 US_Filter = NameRegex, FilterKey = "(?i)^US-X1-[0-9]+$"
-US_Dedicated_Filter = NameRegex, FilterKey = "(?i)^US-Dedicated-B1-[0-9]+$"
-Download_Filter = NameRegex, FilterKey = "(?i)^US-D[0-9]+-[0-9]+$"
-Streaming_Filter = NameRegex, FilterKey = "(?i)^US-(Netflix|Balancer)-N[0-9]+-[0-9]+$"
-SG_Filter = NameRegex, FilterKey = "(?i)^SG-X5-[0-9]+$"
+TW_Filter = NameRegex, FilterKey = "(?i)^TW-X1-[0-9]+$"
+TLS_Filter = NameRegex, FilterKey = "(?i)^TLS-[LST]1-[0-9]+$"
 
 [Rule]
-GEOIP,CN,DIRECT
-GEOIP,PRIVATE,DIRECT
-FINAL,Default Proxy
+DOMAIN-SUFFIX,test-01-cn.gladns.com,DIRECT
+DOMAIN-SUFFIX,test-01-cn.gladns.net,DIRECT
+DOMAIN-SUFFIX,glados.vip,US Dedicated
+DOMAIN-SUFFIX,glados.work,TW Private IP
+
+DOMAIN-SUFFIX,huggingface.co,Download
+DOMAIN-SUFFIX,cdn-lfs.huggingface.co,Download
+DOMAIN-SUFFIX,cdn-lfs-us-1.huggingface.co,Download
+DOMAIN-SUFFIX,cdn-lfs-eu-1.huggingface.co,Download
+DOMAIN-SUFFIX,hf.co,Download
+DOMAIN-SUFFIX,civitai.com,Download
+DOMAIN-SUFFIX,ollama.ai,Download
+DOMAIN-SUFFIX,ollama.com,Download
+DOMAIN-SUFFIX,replicate.delivery,Download
+DOMAIN-SUFFIX,wandb.ai,Download
+DOMAIN-SUFFIX,api.wandb.ai,Download
+DOMAIN-SUFFIX,modelzoo.co,Download
+DOMAIN-SUFFIX,download.pytorch.org,Download
+DOMAIN-SUFFIX,ngc.nvidia.com,Download
+DOMAIN-SUFFIX,api.ngc.nvidia.com,Download
+DOMAIN-SUFFIX,lmstudio.ai,Download
+
+GEOIP,PRIVATE,DIRECT,no-resolve
+GEOIP,CN,DIRECT,no-resolve
+FINAL,Final
 
 [Remote Rule]
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Lan/Lan.list, policy=DIRECT, tag=Lan, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Direct/Direct.list, policy=DIRECT, tag=Direct, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/AdvertisingLite/AdvertisingLite.list, policy=Advertising, tag=AdvertisingLite, enabled=true
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/AdvertisingLite/AdvertisingLite.list, policy=AdBlock, tag=AdvertisingLite, enabled=true
+
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/SteamCN/SteamCN.list, policy=DIRECT, tag=SteamCN, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Steam/Steam.list, policy=Steam, tag=Steam, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Xbox/Xbox.list, policy=Microsoft, tag=Xbox, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Microsoft/Microsoft.list, policy=Microsoft, tag=Microsoft, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Game/Game.list, policy=Game, tag=Game, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Apple/Apple.list, policy=Apple, tag=Apple, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/China/China.list, policy=DIRECT, tag=China, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/OpenAI/OpenAI.list, policy=Research + AI, tag=OpenAI, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Claude/Claude.list, policy=Research + AI, tag=Claude, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Gemini/Gemini.list, policy=Research + AI, tag=Gemini, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Copilot/Copilot.list, policy=Research + AI, tag=Copilot, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Scholar/Scholar.list, policy=Research + AI, tag=Scholar, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/GoogleSearch/GoogleSearch.list, policy=Research + AI, tag=GoogleSearch, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Google/Google.list, policy=Research + AI, tag=Google, enabled=true
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Game/Game.list, policy=Games, tag=Game, enabled=true
+
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Claude/Claude.list, policy=AI + Research, tag=Claude, enabled=true
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/OpenAI/OpenAI.list, policy=AI + Research, tag=OpenAI, enabled=true
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Gemini/Gemini.list, policy=AI + Research, tag=Gemini, enabled=true
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Scholar/Scholar.list, policy=AI + Research, tag=Scholar, enabled=true
+
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/GoogleDrive/GoogleDrive.list, policy=Download, tag=GoogleDrive, enabled=true
+
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Google/Google.list, policy=Default Proxy, tag=Google, enabled=true
+
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/GitHub/GitHub.list, policy=Developer, tag=GitHub, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Developer/Developer.list, policy=Developer, tag=Developer, enabled=true
+
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/YouTube/YouTube.list, policy=Streaming, tag=YouTube, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Netflix/Netflix.list, policy=Streaming, tag=Netflix, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/GlobalMedia/GlobalMedia.list, policy=Streaming, tag=GlobalMedia, enabled=true
+
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Telegram/Telegram.list, policy=Default Proxy, tag=Telegram, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Twitter/Twitter.list, policy=Default Proxy, tag=Twitter, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Discord/Discord.list, policy=Default Proxy, tag=Discord, enabled=true
+
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Apple/Apple.list, policy=Apple, tag=Apple, enabled=true
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Microsoft/Microsoft.list, policy=Microsoft, tag=Microsoft, enabled=true
+
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/China/China.list, policy=DIRECT, tag=China, enabled=true
+
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Proxy/Proxy.list, policy=Default Proxy, tag=Proxy, enabled=true
 
 [Rewrite]
@@ -112,7 +141,7 @@ https://raw.githubusercontent.com/sub-store-org/Sub-Store/master/config/Loon.plu
 
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Loon/AdvertisingLite/AdvertisingLite.plugin, enabled=true
 
-https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.plugin, enabled=true
+https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.lpx, enabled=true
 
 [Mitm]
 skip-server-cert-verify = false
