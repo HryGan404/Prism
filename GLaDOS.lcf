@@ -43,7 +43,7 @@ Microsoft = select,DIRECT,US Premium,US Netflix,url = http://cp.cloudflare.com/g
 AdBlock = select,REJECT,DIRECT
 Final = select,Default Proxy,DIRECT
 
-Auto = url-test,Auto_Filter,url = http://www.gstatic.com/generate_204,interval = 180,tolerance = 100
+Auto = url-test,Auto_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
 Fast = url-test,Fast_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
 Express = url-test,Express_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
 Download = url-test,Download_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
