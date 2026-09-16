@@ -106,7 +106,7 @@ proxy-groups:
     interval: 180
     tolerance: 100
     include-all-proxies: true
-    filter: ^(?:Fast-B1|Balancer-B1|TW-IPv6-P1|US-Balancer-N1|US-Dedicated-B1|JP-Dedicated-B1|US-X1|TW-X1|TLS-[TLS]1-N\d+)-\d+$
+    filter: ^(?:Fast-B1|Balancer-B1|TW-IPv6-P1|US-Balancer-N1|US-Dedicated-B1|JP-Dedicated-B1|US-X1|TW-X1|TLS-[TLS]1)-\d+$
 
   - name: Fast
     type: url-test
