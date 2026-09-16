@@ -416,7 +416,7 @@ rules:
 
   - RULE-SET,Proxy,Default Proxy
 
-  - GEOIP,PRIVATE,DIRECT,no-resolve
-  - GEOIP,CN,DIRECT,no-resolve
+  - GEOIP,PRIVATE,DIRECT
+  - GEOIP,CN,DIRECT
 
   - MATCH,Final
