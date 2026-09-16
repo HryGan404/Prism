@@ -352,7 +352,7 @@ rules:
   - RULE-SET,Gemini,AI + Research
   - RULE-SET,Scholar,AI + Research
 
-  - RULE-SET,GoogleDrive,Download
+  - RULE-SET,GoogleDrive,Default Proxy
 
   - RULE-SET,Google,Default Proxy
 
