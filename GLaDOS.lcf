@@ -76,40 +76,23 @@ DOMAIN-SUFFIX,test-01-cn.gladns.net,DIRECT
 DOMAIN-SUFFIX,glados.vip,US Dedicated
 DOMAIN-SUFFIX,glados.work,TW Private IP
 
-DOMAIN-SUFFIX,huggingface.co,Download
-DOMAIN-SUFFIX,cdn-lfs.huggingface.co,Download
-DOMAIN-SUFFIX,cdn-lfs-us-1.huggingface.co,Download
-DOMAIN-SUFFIX,cdn-lfs-eu-1.huggingface.co,Download
-DOMAIN-SUFFIX,hf.co,Download
-DOMAIN-SUFFIX,civitai.com,Download
-DOMAIN-SUFFIX,ollama.ai,Download
-DOMAIN-SUFFIX,ollama.com,Download
-DOMAIN-SUFFIX,replicate.delivery,Download
-DOMAIN-SUFFIX,wandb.ai,Download
-DOMAIN-SUFFIX,api.wandb.ai,Download
-DOMAIN-SUFFIX,modelzoo.co,Download
-DOMAIN-SUFFIX,download.pytorch.org,Download
-DOMAIN-SUFFIX,ngc.nvidia.com,Download
-DOMAIN-SUFFIX,api.ngc.nvidia.com,Download
-DOMAIN-SUFFIX,lmstudio.ai,Download
+GEOIP,PRIVATE,DIRECT
+GEOIP,CN,DIRECT
 
-GEOIP,PRIVATE,DIRECT,no-resolve
-GEOIP,CN,DIRECT,no-resolve
 FINAL,Final
 
 [Remote Rule]
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Lan/Lan.list, policy=DIRECT, tag=Lan, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Direct/Direct.list, policy=DIRECT, tag=Direct, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/AdvertisingLite/AdvertisingLite.list, policy=AdBlock, tag=AdvertisingLite, enabled=true
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/AdvertisingLite/AdvertisingLite_Domain.list, policy=AdBlock, tag=AdvertisingLite_Domain, enabled=true
 
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/SteamCN/SteamCN.list, policy=DIRECT, tag=SteamCN, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Steam/Steam.list, policy=Steam, tag=Steam, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Game/Game.list, policy=Games, tag=Game, enabled=true
 
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Claude/Claude.list, policy=AI + Research, tag=Claude, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/OpenAI/OpenAI.list, policy=AI + Research, tag=OpenAI, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Gemini/Gemini.list, policy=AI + Research, tag=Gemini, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Scholar/Scholar.list, policy=AI + Research, tag=Scholar, enabled=true
 
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/GoogleDrive/GoogleDrive.list, policy=Download, tag=GoogleDrive, enabled=true
 
@@ -118,19 +101,17 @@ https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Google
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/GitHub/GitHub.list, policy=Developer, tag=GitHub, enabled=true
 
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/YouTube/YouTube.list, policy=Streaming, tag=YouTube, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Netflix/Netflix.list, policy=Streaming, tag=Netflix, enabled=true
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/GlobalMedia/GlobalMedia.list, policy=Streaming, tag=GlobalMedia, enabled=true
 
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Telegram/Telegram.list, policy=Default Proxy, tag=Telegram, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Twitter/Twitter.list, policy=Default Proxy, tag=Twitter, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Discord/Discord.list, policy=Default Proxy, tag=Discord, enabled=true
 
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Apple/Apple.list, policy=Apple, tag=Apple, enabled=true
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Apple/Apple_Domain.list, policy=Apple, tag=Apple_Domain, enabled=true
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Microsoft/Microsoft.list, policy=Microsoft, tag=Microsoft, enabled=true
 
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/China/China.list, policy=DIRECT, tag=China, enabled=true
-
 https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Proxy/Proxy.list, policy=Default Proxy, tag=Proxy, enabled=true
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Proxy/Proxy_Domain.list, policy=Default Proxy, tag=Proxy_Domain, enabled=true
 
 [Rewrite]
 
