@@ -32,33 +32,29 @@ resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/dow
 [Proxy Chain]
 
 [Proxy Group]
-Default Proxy = select,Auto,HK,TW,JP,SG,US,DIRECT,url = http://cp.cloudflare.com/generate_204
-AI + Research = select,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
-Developer = select,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
-Steam = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
-Games = select,HK,TW,JP,SG,US,DIRECT,url = http://cp.cloudflare.com/generate_204
-Apple = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
-Microsoft = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
-Streaming = select,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
-Porn = select,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
-Download = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
+Default Proxy = select,Auto,HK,TW,SG,JP,US,DIRECT,url = http://cp.cloudflare.com/generate_204
+AI + Research = select,JP,US,HK,TW,SG,url = http://cp.cloudflare.com/generate_204
+Streaming = select,HK,TW,SG,JP,US,url = http://cp.cloudflare.com/generate_204
+Developer = select,HK,TW,SG,JP,US,url = http://cp.cloudflare.com/generate_204
+Steam = select,DIRECT,HK,TW,SG,JP,US,url = http://cp.cloudflare.com/generate_204
+Apple = select,DIRECT,HK,TW,SG,JP,US,url = http://cp.cloudflare.com/generate_204
+Microsoft = select,DIRECT,HK,TW,SG,JP,US,url = http://cp.cloudflare.com/generate_204
 AdBlock = select,REJECT,DIRECT
-Final = select,Default Proxy,DIRECT,url = http://cp.cloudflare.com/generate_204
-
-Auto = url-test,Auto_Filter,url = http://cp.cloudflare.com/generate_204,interval = 180,tolerance = 100
+Final = select,Default Proxy,DIRECT
 HK = select,HK Auto,HK_Filter,url = http://cp.cloudflare.com/generate_204
-HK Auto = url-test,HK_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
 TW = select,TW Auto,TW_Filter,url = http://cp.cloudflare.com/generate_204
-TW Auto = url-test,TW_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
-JP = select,JP Auto,JP_Filter,url = http://cp.cloudflare.com/generate_204
-JP Auto = url-test,JP_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
 SG = select,SG Auto,SG_Filter,url = http://cp.cloudflare.com/generate_204
-SG Auto = url-test,SG_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+JP = select,JP Auto,JP_Filter,url = http://cp.cloudflare.com/generate_204
 US = select,US Auto,US_Filter,url = http://cp.cloudflare.com/generate_204
-US Auto = url-test,US_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+Auto = url-test,Auto_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+HK Auto = url-test,HK_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+TW Auto = url-test,TW_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+SG Auto = url-test,SG_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+JP Auto = url-test,JP_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
+US Auto = url-test,US_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 100
 
 [Remote Filter]
-Auto_Filter = NameRegex, FilterKey = "(?i)^(0[.][0-9]+|1[.]0)X[ ]+"
+Auto_Filter = NameRegex, FilterKey = "(?i)^[01][.][0-9]+X\\s+.+$"
 HK_Filter = NameRegex, FilterKey = "(?i)(香港|hong\\s?kong|(?:^|[\\s\\-_|\\[\\]()])hk(?:$|[\\s\\-_|\\[\\]()]))"
 TW_Filter = NameRegex, FilterKey = "(?i)(台湾|台灣|taiwan|(?:^|[\\s\\-_|\\[\\]()])tw(?:$|[\\s\\-_|\\[\\]()]))"
 JP_Filter = NameRegex, FilterKey = "(?i)(日本|japan|(?:^|[\\s\\-_|\\[\\]()])jp(?:$|[\\s\\-_|\\[\\]()]))"
