@@ -37,7 +37,6 @@ AI + Research = select,TW Private IP,US Dedicated,JP Dedicated,US,TW,TLS,url = h
 Streaming = select,Express,TW Private IP,US Premium,US Netflix,US Dedicated,JP Dedicated,url = http://cp.cloudflare.com/generate_204
 Developer = select,Fast,TW Private IP,US Dedicated,JP Dedicated,US,TW,TLS,url = http://cp.cloudflare.com/generate_204
 Steam = select,DIRECT,Fast,Download,TW Private IP,US Dedicated,JP Dedicated,US,TW,TLS,url = http://cp.cloudflare.com/generate_204
-Games = select,Fast,Download,TW Private IP,US Dedicated,JP Dedicated,US,TW,TLS,DIRECT,url = http://cp.cloudflare.com/generate_204
 Apple = select,DIRECT,US Premium,US Netflix,url = http://cp.cloudflare.com/generate_204
 Microsoft = select,DIRECT,US Premium,US Netflix,url = http://cp.cloudflare.com/generate_204
 AdBlock = select,REJECT,DIRECT
