@@ -115,7 +115,7 @@ https://raw.githubusercontent.com/sub-store-org/Sub-Store/master/config/Loon.plu
 
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Loon/AdvertisingLite/AdvertisingLite.plugin, enabled=true
 
-https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.plugin, enabled=true
+https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.lpx, enabled=true
 
 [Mitm]
 skip-server-cert-verify = false
